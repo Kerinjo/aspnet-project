@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Welcome @ViewData["User"] !</h1>
+    <h2 class="display-4">@ViewData["IsAdult"]</h2>
+    <h2 class="display-4">@ViewData["HasCard"]</h2>
+
+    @Html.ActionLink("John", "Index", "Home", new { Name = "John" })
+    @Html.ActionLink("Bohr", "Index", "Home", new { Name = "Bohr" })
+    @Html.ActionLink("Ohm", "Index", "Home", new { Name = "Ohm" })
+    @Html.ActionLink("Garry", "Index", "Home", new { Name = "Garry" })
+
+</div>
