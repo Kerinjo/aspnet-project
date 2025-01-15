@@ -22,7 +22,7 @@ namespace biblioteka.Controllers
 
             ViewData["IsAdult"] = age >= 18 ? "Over 18" : "Under 18";
 
-            ViewData["HasCard"] = hasCard?"Do you want to borrow a book?":"Please register for a card";
+            ViewData["HasCard"] = hasCard ? "Do you want to borrow a book?":"Please register for a card";
 
             if (hasCard)
             {

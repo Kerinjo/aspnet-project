@@ -1,0 +1,5 @@
+﻿@model List<BookViewModel>
+@foreach (var bookViewModel in Model)
+{
+    @Html.Partial("_Book", bookViewModel);
+}

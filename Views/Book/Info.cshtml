@@ -1,0 +1,17 @@
+﻿@model BookViewModel
+@{
+    if (ViewBag.Message != null)
+
+    {
+        <div>
+            @ViewBag.Message
+        </div>
+    }
+}
+<hr />
+<label asp-for="@Model.Title"></label> : @Model.Title
+<br />
+<label asp-for="@Model.Author"></label> : @Model.Author
+<br />
+<label asp-for="@Model.Status"></label> : @Model.Status
+<br />

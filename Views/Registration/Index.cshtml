@@ -1,0 +1,21 @@
+﻿@using (Html.BeginForm("Register", "Registration", FormMethod.Post))
+{
+    @Html.Label("Email address:")
+    @Html.TextBox("email", "Your email address", null)
+    <br />
+    @Html.Label("Consent:")
+    @Html.CheckBox("consent")
+    <br />
+    @Html.Label("Age:")
+    @Html.TextBox("age", 0, new { @type = "number" })
+    <br />
+    <input type="submit" value="Submit weakly type synchronous form" />
+}
+@{
+    if (ViewBag.Message != null)
+    {
+        <div>
+            @ViewBag.Message
+        </div>
+    }
+}
