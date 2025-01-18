@@ -1,21 +1,48 @@
-﻿@model BookViewModel
-<form asp-action="Index" asp-controller="Book">
-    <h4>Add book</h4>
-    <hr />
-    <input asp-for="@Model.Id" type="hidden" />
-    <br />
-    <label asp-for="@Model.Title"></label>
-    <input asp-for="@Model.Title" />
-    <br />
-    <label asp-for="@Model.Author"></label>
-    <input asp-for="@Model.Author" />
-    <br />
-    <label asp-for="@Model.Status"></label>
-    <select asp-for="@Model.Status">
-        <option selected="selected" value="Planned">Planned</option>
-        <option value="Reading">Currently reading</option>
-        <option value="Read">Finished</option>
-    </select>
-    <br />
-    <button type="submit">Save</button>
-</form>
+﻿@model IEnumerable<biblioteka.Models.BookViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

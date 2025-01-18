@@ -5,17 +5,35 @@ namespace biblioteka.Controllers
 {
     public class BookController : Controller
     {
+        static List<BookViewModel> books = new List<BookViewModel>();
+
         [HttpGet]
         public IActionResult Index()
         {
+            return View(books);
+        }
+        
+        [HttpGet]
+        public IActionResult Create()
+        {
             return View();
         }
+
         [HttpPost]
-        public IActionResult Index(BookViewModel viewModel)
+        public IActionResult Create(BookViewModel book)
         {
-            this.ViewBag.Message = $"{viewModel.Title} by {viewModel.Author} added to favorites!";
-            return View("Info", viewModel);
+            if (ModelState.IsValid)
+            {
+                book.Id = books.Max(x => x.Id) + 1;
+                books.Add(book);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
+
         [HttpGet]
         public IActionResult List()
         {
