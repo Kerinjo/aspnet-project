@@ -1,3 +1,7 @@
+using biblioteka.Services;
+using Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace biblioteka
 {
     public class Program
@@ -8,6 +12,8 @@ namespace biblioteka
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<LibraryContext>();
+            builder.Services.AddTransient<IMediaService, MediaService>();
 
             var app = builder.Build();
 

@@ -1,5 +1,6 @@
 ﻿using biblioteka.Models;
 using Shared.Enums;
+using Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace biblioteka.Controllers
@@ -7,11 +8,16 @@ namespace biblioteka.Controllers
     public class MediaController : Controller
     {
         static List<MediaViewModel> mediaList = new List<MediaViewModel>();
+        private LibraryContext _context;
+        public MediaController(LibraryContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         public IActionResult Index()
         {
-            return View(mediaList);
+            return View(_context.Media.ToList());
         }
         
         [HttpGet]
@@ -25,8 +31,7 @@ namespace biblioteka.Controllers
         {
             if (ModelState.IsValid)
             {
-                media.Id = mediaList.Max(x => x.Id) + 1;
-                mediaList.Add(media);
+                this._context.Add(media);
                 return RedirectToAction("Index");
             }
             else
