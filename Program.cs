@@ -38,6 +38,10 @@ namespace biblioteka
                 pattern: "books",
                 defaults: new { controller = "Book", action = "List" });
 
+            app.MapControllerRoute(name: "media_shortcut",
+                pattern: "media",
+                defaults: new { controller = "Media", action = "List" });
+
             app.Run();
         }
     }
