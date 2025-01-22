@@ -1,4 +1,4 @@
-﻿@model biblioteka.Models.BookViewModel
+﻿@model biblioteka.Models.MediaViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -6,7 +6,7 @@
 
 <h1>Create</h1>
 
-<h4>Book</h4>
+<h4>Media</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,21 +16,31 @@
                 <input asp-for="Id" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control" />
-                <span asp-validation-for="Author" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <select asp-for="Status" class="form-control">
                     <option selected="selected" value="Planned">Planned</option>
-                    <option value="Reading">Currently reading</option>
-                    <option value="Read">Finished</option>
+                    <option value="InProgress">In Progress</option>
+                    <option value="Finished">Finished</option>
+                    <option value="Abandoned">Abandoned</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <select asp-for="Category" class="form-control">
+                    <option selected="selected" value="Book">Book</option>
+                    <option value="Movie">Movie</option>
+                    <option value="Game">Game</option>
                 </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>

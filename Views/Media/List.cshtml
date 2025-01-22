@@ -1,0 +1,5 @@
+﻿@model List<MediaViewModel>
+@foreach (var mediaViewModel in Model)
+{
+    @Html.Partial("_Media", mediaViewModel);
+}
