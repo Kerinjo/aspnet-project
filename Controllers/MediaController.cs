@@ -1,5 +1,5 @@
 ﻿using biblioteka.Models;
-using Shared.Enums;
+using biblioteka.Services;
 using Data;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,19 +7,18 @@ namespace biblioteka.Controllers
 {
     public class MediaController : Controller
     {
-        static List<MediaViewModel> mediaList = new List<MediaViewModel>();
-        private LibraryContext _context;
-        public MediaController(LibraryContext context)
+        private IMediaService _service;
+        public MediaController(IMediaService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_context.Media.ToList());
+            return View(_service.FindAll());
         }
-        
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -31,32 +30,15 @@ namespace biblioteka.Controllers
         {
             if (ModelState.IsValid)
             {
-                this._context.Add(media);
+                // data validated
+
+                _service.Add(media);
                 return RedirectToAction("Index");
             }
             else
             {
-                return View();
+                return View(); // go back to the form with errors
             }
-        }
-
-        [HttpGet]
-        public IActionResult List()
-        {
-            List<MediaViewModel> list = new List<MediaViewModel>();
-            list.Add(new MediaViewModel() { 
-                Author = "Emily Bront\u00EB", Title = "Wuthering Heights",
-                Status = Status.Planned,      Category = Category.Book 
-            });
-            list.Add(new MediaViewModel() {
-                Author = "Herman Melville", Title = "Moby Dick",
-                Status = Status.Planned,    Category = Category.Book
-            });
-            list.Add(new MediaViewModel() {
-                Author = "Johann Wolfgang von Goethe", Title = "Faust",
-                Status = Status.InProgress, Category = Category.Book
-            });
-            return View(list);
         }
     }
 }

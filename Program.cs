@@ -36,14 +36,6 @@ namespace biblioteka
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            app.MapControllerRoute(name: "cars_shortcut",
-                pattern: "moto",
-                defaults: new { controller = "Car", action = "List" });
-
-            app.MapControllerRoute(name: "books_shortcut",
-                pattern: "books",
-                defaults: new { controller = "Book", action = "List" });
-
             app.MapControllerRoute(name: "media_shortcut",
                 pattern: "media",
                 defaults: new { controller = "Media", action = "List" });
