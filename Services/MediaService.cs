@@ -27,6 +27,7 @@ namespace biblioteka.Services
             if (find != null)
             {
                 _context.Media.Remove(find);
+                _context.SaveChanges();
             }
         }
 
@@ -43,6 +44,7 @@ namespace biblioteka.Services
         public void Update(MediaViewModel contact)
         {
             _context.Media.Update(MediaMapper.ToEntity(contact));
+            _context.SaveChanges();
         }
     }
 }
