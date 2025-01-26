@@ -1,0 +1,39 @@
+﻿@biblioteka_HostAddress = https://localhost:7268
+
+POST {{biblioteka_HostAddress}}/api/reviewapi/
+Content-Type: application/json
+
+{
+  "Name": "Example review",
+  "Content": "Polecam"
+}
+###
+
+PUT {{biblioteka_HostAddress}}/api/reviewapi/3
+Content-Type: application/json
+
+{
+  "Id" : 3,
+  "Name": "Another review",
+  "Content": "Jednak nie polecam"
+}
+
+###
+PUT {{biblioteka_HostAddress}}/api/reviewapi/5
+Content-Type: application/json
+
+{
+  "Id" : 5,
+  "Name": "Another review",
+  "Content": "Nie polecam"
+}
+
+###
+
+GET {{biblioteka_HostAddress}}/api/reviewapi
+
+###
+
+DELETE {{biblioteka_HostAddress}}/api/reviewapi/4
+
+###
