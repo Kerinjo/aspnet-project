@@ -1,3 +1,4 @@
+using biblioteka.Middleware;
 using biblioteka.Services;
 using Data;
 using Microsoft.EntityFrameworkCore;
@@ -31,14 +32,11 @@ namespace biblioteka
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            app.MapControllerRoute(name: "media_shortcut",
-                pattern: "media",
-                defaults: new { controller = "Media", action = "List" });
+            app.UseMiddleware<LastVisitMiddleware>();
 
             app.Run();
         }

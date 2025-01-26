@@ -15,25 +15,8 @@ namespace biblioteka.Controllers
 
         public IActionResult Index([FromQuery] string name, [FromQuery] int age, [FromQuery] bool hasCard)
         {
-            string username = this.Request.Query["Name"].ToString();
-            if (string.IsNullOrEmpty(username))
-                username = "Stranger";
-            ViewData["User"] = username;
-
-            ViewData["IsAdult"] = age >= 18 ? "Over 18" : "Under 18";
-
-            ViewData["HasCard"] = hasCard ? "Do you want to borrow a book?":"Please register for a card";
-
-            if (hasCard)
-            {
-                return View("After");
-            }
-            else
-            {
-                return View("Before");
-            }
-
-            return View(); 
+            ViewData["LastVisit"] = Response.HttpContext.Items[Middleware.LastVisitMiddleware.CookieName];
+            return View();
         }
 
         public IActionResult Privacy()
